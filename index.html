@@ -82,20 +82,42 @@
       color: #333;
     }
 
-    #product-detail {
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
       background: #fff;
-      margin: 20px auto;
+      margin: 50px auto;
       padding: 20px;
       border-radius: 12px;
       width: 90%;
       max-width: 600px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: opacity 0.3s ease;
-      opacity: 0;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    #product-detail.show {
-      opacity: 1;
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #00c6a0;
     }
 
     button {
@@ -122,21 +144,13 @@
       }
 
       #product-list {
-        flex-direction: column;
-        align-items: center;
         display: block;
       }
 
       .product {
-        width: 100%;
+        width: 100% !important;
         max-width: none;
         margin: 10px 0;
-      }
-
-      button {
-        width: 100%;
-        font-size: 1.1em;
-        padding: 12px;
       }
 
       .product img {
@@ -145,8 +159,10 @@
         border-radius: 12px 12px 0 0;
       }
 
-      .product-content {
-        padding: 10px;
+      button {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 12px;
       }
     }
   </style>
@@ -165,7 +181,12 @@
 
   <div id="product-list"></div>
 
-  <div id="product-detail"></div>
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="product-detail"></div>
+    </div>
+  </div>
 
   <script>
     fetch('products.json')
@@ -209,37 +230,44 @@
       const p = window.productsData.find(item => item.id === id);
       if (!p) return;
 
-      const detail = document.getElementById('product-detail');
-      detail.classList.remove('show');
-      setTimeout(() => {
-        let mediaContent = '';
-        if (p.youtube) {
-          mediaContent = `
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; margin-bottom:10px;">
-          <iframe src="${p.youtube}" frameborder="0" allowfullscreen 
-            style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-        </div>
-      `;
-        } else {
-          mediaContent = `<img src="images/${p.image}" alt="${p.name}" style="border-radius:12px; margin-bottom:10px;">`;
-        }
-
-        detail.innerHTML = `
-      <h2>${p.name}</h2>
-      ${mediaContent}
-      <p><strong>ขนาด:</strong> ${p.size}</p>
-      <p><strong>สี:</strong> ${p.color}</p>
-      <p><strong>อายุ:</strong> ${p.ageText}</p>
-      <p><strong>ราคา:</strong> ${p.price} บาท</p>
-      <button onclick="contact()">ติดต่อสั่งซื้อ</button>
+      let mediaContent = '';
+      if (p.youtube) {
+        mediaContent = `
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; margin-bottom:10px;">
+        <iframe src="${p.youtube}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen 
+          style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
     `;
-        detail.classList.add('show');
-        window.scrollTo({ top: detail.offsetTop, behavior: 'smooth' });
-      }, 100);
+      } else {
+        mediaContent = `<img src="images/${p.image}" alt="${p.name}" style="border-radius:12px; margin-bottom:10px;">`;
+      }
+
+      document.getElementById('product-detail').innerHTML = `
+    <h2>${p.name}</h2>
+    ${mediaContent}
+    <p><strong>ขนาด:</strong> ${p.size}</p>
+    <p><strong>สี:</strong> ${p.color}</p>
+    <p><strong>อายุ:</strong> ${p.ageText}</p>
+    <p><strong>ราคา:</strong> ${p.price} บาท</p>
+    <button onclick="contact()">ติดต่อสั่งซื้อ</button>
+  `;
+
+      document.getElementById('productModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('productModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
     }
 
     function contact() {
-      window.location.href = 'https://line.me/ti/p/oskarfucku';
+      window.location.href = 'https://line.me/ti/p/yourlineid';
     }
 
     document.getElementById('searchInput').addEventListener('input', function () {
