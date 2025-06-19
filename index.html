@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <title>ร้านขายปลากัดธรรมชาติ</title>
@@ -17,7 +18,7 @@
       color: #fff;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
@@ -30,8 +31,8 @@
     }
 
     #searchInput {
-      padding: 8px;
-      width: 220px;
+      padding: 10px;
+      width: 300px;
       border-radius: 20px;
       border: 1px solid #ccc;
     }
@@ -46,7 +47,7 @@
     .product {
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       margin: 10px;
       width: 220px;
       cursor: pointer;
@@ -55,7 +56,7 @@
 
     .product:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .product img {
@@ -88,19 +89,13 @@
       border-radius: 12px;
       width: 90%;
       max-width: 600px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       transition: opacity 0.3s ease;
       opacity: 0;
     }
 
     #product-detail.show {
       opacity: 1;
-    }
-
-    #product-detail img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 10px;
     }
 
     button {
@@ -118,39 +113,45 @@
       background: linear-gradient(135deg, #00c6a0, #7ed957);
     }
 
-    /* Responsive สำหรับหน้าจอเล็ก (มือถือ) */
-@media (max-width: 600px) {
-  #product-list {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 5px;
-  }
+    /* Responsive */
+    @media (max-width: 600px) {
+      #searchInput {
+        width: 90%;
+        font-size: 1.1em;
+        padding: 12px;
+      }
 
-  .product {
-    width: 90% !important;
-    margin: 10px 0;
-  }
+      #product-list {
+        flex-direction: column;
+        align-items: center;
+        display: block;
+      }
 
-  #searchInput {
-    width: 90% !important;
-    font-size: 1.1em;
-  }
+      .product {
+        width: 100%;
+        max-width: none;
+        margin: 10px 0;
+      }
 
-  #product-detail {
-    width: 95% !important;
-    padding: 15px;
-  }
+      button {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 12px;
+      }
 
-  button {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 1.1em;
-    border-radius: 8px;
-  }
-}
+      .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px 12px 0 0;
+      }
 
+      .product-content {
+        padding: 10px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -166,30 +167,30 @@
 
   <div id="product-detail"></div>
 
-<script>
-fetch('products.json')
-  .then(res => res.json())
-  .then(data => {
-    window.productsData = data;
-    renderProducts(data);
-  });
+  <script>
+    fetch('products.json')
+      .then(res => res.json())
+      .then(data => {
+        window.productsData = data;
+        renderProducts(data);
+      });
 
-function renderProducts(products) {
-  const today = new Date();
-  let html = '';
+    function renderProducts(products) {
+      const today = new Date();
+      let html = '';
 
-  products.forEach(p => {
-    const addedDate = new Date(p.addedDate);
-    const diffTime = today - addedDate;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const ageMonths = Math.floor(diffDays / 30.4375);
-    const ageDays = diffDays - Math.floor(ageMonths * 30.4375);
+      products.forEach(p => {
+        const addedDate = new Date(p.addedDate);
+        const diffTime = today - addedDate;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const ageMonths = Math.floor(diffDays / 30.4375);
+        const ageDays = diffDays - Math.floor(ageMonths * 30.4375);
 
-    if (ageMonths >= 18) return;
+        if (ageMonths >= 18) return;
 
-    p.ageText = `${ageMonths} เดือน ${ageDays} วัน`;
+        p.ageText = `${ageMonths} เดือน ${ageDays} วัน`;
 
-    html += `
+        html += `
       <div class="product" onclick="showDetails('${p.id}')">
         <img src="images/${p.image}" alt="${p.name}">
         <div class="product-content">
@@ -199,44 +200,57 @@ function renderProducts(products) {
         </div>
       </div>
     `;
-  });
+      });
 
-  document.getElementById('product-list').innerHTML = html;
-}
+      document.getElementById('product-list').innerHTML = html;
+    }
 
-function showDetails(id) {
-  const p = window.productsData.find(item => item.id === id);
-  if (!p) return;
+    function showDetails(id) {
+      const p = window.productsData.find(item => item.id === id);
+      if (!p) return;
 
-  const detail = document.getElementById('product-detail');
-  detail.classList.remove('show');
-  setTimeout(() => {
-    detail.innerHTML = `
+      const detail = document.getElementById('product-detail');
+      detail.classList.remove('show');
+      setTimeout(() => {
+        let mediaContent = '';
+        if (p.youtube) {
+          mediaContent = `
+        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; margin-bottom:10px;">
+          <iframe src="${p.youtube}" frameborder="0" allowfullscreen 
+            style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        </div>
+      `;
+        } else {
+          mediaContent = `<img src="images/${p.image}" alt="${p.name}" style="border-radius:12px; margin-bottom:10px;">`;
+        }
+
+        detail.innerHTML = `
       <h2>${p.name}</h2>
-      <img src="images/${p.image}" alt="${p.name}">
+      ${mediaContent}
       <p><strong>ขนาด:</strong> ${p.size}</p>
       <p><strong>สี:</strong> ${p.color}</p>
       <p><strong>อายุ:</strong> ${p.ageText}</p>
       <p><strong>ราคา:</strong> ${p.price} บาท</p>
       <button onclick="contact()">ติดต่อสั่งซื้อ</button>
     `;
-    detail.classList.add('show');
-    window.scrollTo({ top: detail.offsetTop, behavior: 'smooth' });
-  }, 100);
-}
+        detail.classList.add('show');
+        window.scrollTo({ top: detail.offsetTop, behavior: 'smooth' });
+      }, 100);
+    }
 
-function contact() {
-  window.location.href = 'https://line.me/ti/p/yourlineid';
-}
+    function contact() {
+      window.location.href = 'https://line.me/ti/p/oskarfucku';
+    }
 
-document.getElementById('searchInput').addEventListener('input', function() {
-  const kw = this.value.toLowerCase();
-  const filtered = window.productsData.filter(p =>
-    p.name.toLowerCase().includes(kw) || p.color.toLowerCase().includes(kw)
-  );
-  renderProducts(filtered);
-});
-</script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const kw = this.value.toLowerCase();
+      const filtered = window.productsData.filter(p =>
+        p.name.toLowerCase().includes(kw) || p.color.toLowerCase().includes(kw)
+      );
+      renderProducts(filtered);
+    });
+  </script>
 
 </body>
+
 </html>
