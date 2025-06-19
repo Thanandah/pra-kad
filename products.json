@@ -1,0 +1,20 @@
+[
+  {
+    "id": "betta1",
+    "name": "ปลากัดแฟนซี",
+    "price": 250,
+    "image": "betta1.jpg",
+    "size": "3 นิ้ว",
+    "color": "แดง-น้ำเงิน",
+    "addedDate": "2024-01-01"
+  },
+  {
+    "id": "betta2",
+    "name": "ปลากัดฮาฟมูน",
+    "price": 300,
+    "image": "betta2.jpg",
+    "size": "3.5 นิ้ว",
+    "color": "น้ำเงินเข้ม",
+    "addedDate": "2024-12-01"
+  }
+]
