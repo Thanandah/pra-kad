@@ -1,0 +1,77 @@
+<header class="navbar">
+  <div class="logobtn">
+    <a href="index.html">BETTA</a>
+  </div>
+  <nav>
+    <a href="#">สายพันธุ์</a>
+    <a href="#">แกลเลอรี</a>
+    <a href="#">เกี่ยวกับเรา</a>
+    <a href="#">ติดต่อ</a>
+  </nav>
+</header>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  padding: 15px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  box-sizing: border-box;
+}
+
+.logobtn a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: #222;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  padding-right: 10px; /* เพิ่ม padding ขวากันโดนขอบจอ */
+}
+
+.navbar nav a {
+  margin: 0 10px; /* ปรับระยะให้พอดี */
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar nav a:hover {
+  color: #fff;
+}
+
+body {
+  padding-top: 70px; /* ให้เนื้อหาถูกเลื่อนลง ไม่โดน navbar ทับ */
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 10px 10px;
+  }
+  
+  .navbar nav a {
+    margin: 0 5px;
+    font-size: 12px;
+  }
+
+  .logobtn a {
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+}
+</style>

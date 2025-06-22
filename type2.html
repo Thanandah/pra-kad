@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ปลากัดหางมงกุฎ</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: #111;
+      color: white;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ff4d4d;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ff4d4d;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-container"></div>
+  <script>
+    fetch('component/navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+      })
+      .catch(err => console.error('โหลด Navbar ไม่สำเร็จ:', err));
+  </script>
+
+  <div class="container">
+    <h1>ปลากัดหางแผ่</h1>
+    <p>
+      ปลากัดหางแผ่มีครีบหลังและหางที่ยาวแผ่เหมือนพัด เป็นสายพันธุ์ยอดนิยมสำหรับการประกวด
+    </p>
+    <div class="fish-grid" id="fishGrid"></div>
+    <!-- Grid container -->
+    <div id="fishGrid" class="fish-grid"></div>
+
+    <!-- Modal -->
+    <div id="fishModal" class="modal">
+      <div class="modal-content" id="fish-detail"></div>
+    </div>
+
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="product-detail"></div>
+      </div>
+    </div>
+    <div class="back-container">
+      <a href="index.html" class="back">← กลับหน้าแรก</a>
+    </div>
+</body>
+
+</html>
+
+<script>
+  let fishData = [];
+
+  fetch('spec.json')
+    .then(response => response.json())
+    .then(data => {
+      fishData = data;
+      renderFishCards(data);
+    })
+    .catch(error => console.error("ไม่สามารถโหลดข้อมูล JSON ได้:", error));
+
+  function renderFishCards(data) {
+    const grid = document.getElementById('fishGrid');
+    let html = '';
+
+    data.forEach((fish, index) => {
+      html += `
+        <div class="fish-card" onclick="showFishDetail(${index})">
+          <img src="${fish.image}" alt="${fish.name}" />
+          <div class="fish-name">${fish.name}</div>
+        </div>
+      `;
+    });
+
+    grid.innerHTML = html;
+  }
+
+  function showFishDetail(index) {
+    const fish = fishData[index];
+    const modal = document.getElementById('fishModal');
+    const detail = document.getElementById('fish-detail');
+
+    detail.innerHTML = `
+      <h2>${fish.name}</h2>
+      <img src="${fish.image}" alt="${fish.name}" style="width:100%; border-radius:8px; margin-bottom:15px;">
+      <p>${fish.description}</p>
+      <button onclick="closeModal()">ปิด</button>
+    `;
+
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('fishModal').style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById('fishModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
+</script>
