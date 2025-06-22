@@ -1,12 +1,14 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ปลากัดหางมงกุฎ</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap"
+    rel="stylesheet">
   <style>
     html {
       scroll-behavior: smooth;
@@ -43,9 +45,12 @@
     }
   </style>
 </head>
+
 <body>
   <header class="navbar">
-    <div class="logo">BETTA</div>
+    <div class="logobtn">
+      <a href="index.html">BETTA</a>
+    </div>
     <nav>
       <a href="#">สายพันธุ์</a>
       <a href="#">แกลเลอรี</a>
@@ -59,16 +64,18 @@
       <p class="tagline">บล็อกเกี่ยวกับปลากัด</p>
       <h1>ปลากัด<br>หางมงกุฎ</h1>
       <p class="description">
-        ปลากัดหางมงกุฎ (Betta splendens) เป็นสายพันธุ์ที่ได้รับความนิยมอย่างมากในหมู่ผู้เลี้ยงปลา ด้วยลักษณะเด่นของครีบหางที่เป็นแฉกสวยงาม สีสันสดใส และท่วงท่าที่สง่างาม จึงกลายเป็นที่ชื่นชอบของคนรักปลาทั่วโลก
+        ปลากัดหางมงกุฎ (Betta splendens) เป็นสายพันธุ์ที่ได้รับความนิยมอย่างมากในหมู่ผู้เลี้ยงปลา
+        ด้วยลักษณะเด่นของครีบหางที่เป็นแฉกสวยงาม สีสันสดใส และท่วงท่าที่สง่างาม จึงกลายเป็นที่ชื่นชอบของคนรักปลาทั่วโลก
       </p>
       <div class="buttons">
-        <button class="red">
-            <a href="cat.html">ดูเพิ่มเติม</a></button>
+        <button class="red"><a href="category.html">ดูเพิ่มเติม</a></button>
         <button class="dark">ชมวิดีโอ</button>
       </div>
     </div>
     <div class="fish-image">
-      <img src="https://c4.wallpaperflare.com/wallpaper/934/955/692/animal-betta-siamese-fighting-fish-wallpaper-preview.jpg" alt="ปลากัดหางมงกุฎ" />
+      <img
+        src="https://c4.wallpaperflare.com/wallpaper/934/955/692/animal-betta-siamese-fighting-fish-wallpaper-preview.jpg"
+        alt="ปลากัดหางมงกุฎ" />
     </div>
     <div class="scroll-indicator">01<br>|<br>04</div>
   </main>
@@ -85,41 +92,50 @@
   </footer>
 
   <script>
-    fetch('data.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.createElement('div');
-        container.className = 'extra-section';
-        container.id = 'content';
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.createElement('div');
+      container.className = 'extra-section';
+      container.id = 'content';
 
-        data.forEach(fish => {
-          const block = document.createElement('div');
-          block.className = 'fish-block';
-          block.innerHTML = `
-            <h2>${fish.title}</h2>
-            <p>${fish.description}</p>
-          `;
-          container.appendChild(block);
+      data.forEach((fish, index) => {
+        const block = document.createElement('div');
+        block.className = 'fish-block';
+        block.innerHTML = `
+          <h2>${fish.title}</h2>
+          <p>${fish.description}</p>
+        `;
+
+        // Add click handler to change page
+        block.style.cursor = 'pointer';
+        block.addEventListener('click', () => {
+          window.location.href = `type${index + 1}.html`; // Redirect to type1.html, type2.html, etc.
         });
 
-        document.body.appendChild(container);
-
-        // Add animation once in view
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, {
-          threshold: 0.1
-        });
-
-        observer.observe(container);
-      })
-      .catch(error => {
-        console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล JSON:", error);
+        container.appendChild(block);
       });
-  </script>
+
+      document.body.appendChild(container);
+
+      // Add animation once in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      observer.observe(container);
+    })
+    .catch(error => {
+      console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล JSON:", error);
+    });
+</script>
+
 </body>
+
 </html>

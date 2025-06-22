@@ -64,6 +64,16 @@ body {
   color: #ccc;
 }
 
+.logobtn a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: #222;
+}
+
 .buttons button {
   padding: 10px 20px;
   margin-right: 10px;
@@ -213,6 +223,28 @@ p {
   font-family: 'Playfair Display', serif;
 }
 
+.back-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #e43b3b;
+}
+
+
 .buttons button a {
   color: inherit;
   text-decoration: none;
@@ -255,7 +287,7 @@ p {
   cursor: pointer;
 }
 
-.close-btn:hover {
+/* .close-btn:hover {
   color: #00c6a0;
 }
 
@@ -272,7 +304,7 @@ button {
 
 button:hover {
   background: linear-gradient(135deg, #00c6a0, #7ed957);
-}
+} */
 
 /* Responsive */
 @media (max-width: 600px) {
