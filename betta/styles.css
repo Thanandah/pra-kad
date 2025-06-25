@@ -1,0 +1,412 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-weight: bold;
+  background: #1e1e1e;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.navbar nav a {
+  margin: 0 15px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 50px;
+  position: relative;
+  height: 100vh;
+}
+
+.text-content {
+  max-width: 600px;
+}
+
+.text-content .tagline {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.text-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.text-content .description {
+  margin: 20px 0;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.logobtn a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: #222;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button.red {
+  background: #ff4d4d;
+  color: white;
+}
+
+button.dark {
+  background: #222;
+  color: white;
+}
+
+.fish-image img {
+  width: 500px;
+  max-width: 100%;
+}
+
+.scroll-indicator {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.lang-select a,
+.socials a {
+  color: #aaa;
+  text-decoration: none;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+.extra-section {
+  padding: 50px;
+  background: #111;
+}
+
+.fish-block {
+  margin-bottom: 30px;
+  border-left: 4px solid #ff4d4d;
+  padding-left: 20px;
+}
+
+.fish-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: #fff;
+}
+
+.fish-block p {
+  font-size: 16px;
+  color: #ccc;
+  max-width: none;
+  /* override any existing limits */
+  margin-right: 0;
+  /* optional: remove margins if present */
+  width: 100%;
+}
+
+/* catpg */
+/* General Reset & Font */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ccc;
+}
+
+/* Gallery Section */
+.fish-gallery {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #000;
+}
+
+.gallery-header {
+  margin-bottom: 40px;
+}
+
+/* Grid Styles */
+.fish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Fish Card Styles */
+.fish-card {
+  background-color: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fish-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+}
+
+.fish-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Name Box */
+.fish-name {
+  background-color: #fff;
+  color: #111;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.back-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #e43b3b;
+}
+
+
+.buttons button a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* .close-btn:hover {
+  color: #00c6a0;
+}
+
+button {
+  background: linear-gradient(135deg, #7ed957, #00c6a0);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #00c6a0, #7ed957);
+} */
+
+/* Responsive */
+@media (max-width: 600px) {
+  #searchInput {
+    width: 90%;
+    font-size: 1.1em;
+    padding: 12px;
+  }
+
+  #product-list {
+    display: block;
+  }
+
+  .product {
+    width: 100% !important;
+    max-width: none;
+    margin: 10px 0;
+  }
+
+  .product img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px 12px 0 0;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 12px;
+  }
+}
+
+.fish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.fish-card {
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.fish-card:hover {
+  transform: translateY(-5px);
+}
+
+.fish-card img {
+  width: 100%;
+  height: auto;
+}
+
+.fish-name {
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background: white;
+  color: black;
+  margin: 10% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.modal-content button {
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.modal-content button:hover {
+  background: #444;
+}
